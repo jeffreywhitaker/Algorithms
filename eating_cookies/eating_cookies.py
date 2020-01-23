@@ -9,11 +9,15 @@ import sys
 
 def eating_cookies(n, cache=None):
     # if 0 cookies or 1 cookie
+    if cache is None:
+        cache = [{0: 1, 1: 1, 2: 2}]
     if n < 0:
         return 0
-    if n <= 1:
-        return 1
-    return eating_cookies(n - 3) + eating_cookies(n - 2) + eating_cookies(n - 1)
+    else:
+        if n not in cache:
+            cache[n] = eating_cookies(
+                n - 3, cache) + eating_cookies(n - 2, cache) + eating_cookies(n - 1, cache)
+    return cache[n]
 
 
 if __name__ == "__main__":
