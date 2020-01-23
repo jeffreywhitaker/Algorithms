@@ -9,8 +9,11 @@ import sys
 
 def eating_cookies(n, cache=None):
     # if 0 cookies or 1 cookie
-    if n == 0 or n == 1:
+    if n < 0:
+        return 0
+    if n <= 1:
         return 1
+    return eating_cookies(n - 3) + eating_cookies(n - 2) + eating_cookies(n - 1)
 
 
 if __name__ == "__main__":
